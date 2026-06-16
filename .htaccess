@@ -1,0 +1,7 @@
+# Enable custom error pages
+ErrorDocument 404 /404.html
+
+# Cache static assets (optional)
+<FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg)$">
+    Header set Cache-Control "max-age=86400, public"
+</FilesMatch>
