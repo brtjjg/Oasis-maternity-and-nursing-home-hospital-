@@ -159,15 +159,21 @@
         .careers-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:24px; }
         .career-item { background:var(--white); padding:20px 16px; border-radius:var(--radius); text-align:center; border:1px solid rgba(10,126,111,0.06); }
 
+        /* ===== POLICY MODALS ===== */
+        .policy-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; backdrop-filter:blur(4px); justify-content:center; align-items:center; padding:20px; overflow-y:auto; }
+        .policy-modal.active { display:flex; }
+        .policy-box { background:white; max-width:800px; width:100%; max-height:90vh; overflow-y:auto; padding:40px; border-radius:var(--radius); box-shadow:0 20px 60px rgba(0,0,0,0.3); position:relative; }
+        .policy-box .close-btn { position:sticky; top:0; float:right; font-size:1.8rem; background:none; border:none; cursor:pointer; color:var(--text-muted); transition:var(--transition); }
+        .policy-box .close-btn:hover { color:var(--text-dark); }
+        .policy-box h2 { font-size:2rem; color:var(--primary-dark); margin-top:0; }
+        .policy-box h3 { font-size:1.3rem; color:var(--primary); margin:20px 0 10px; }
+        .policy-box h4 { font-size:1.1rem; color:var(--text-dark); margin:16px 0 6px; }
+        .policy-box p { font-size:0.95rem; line-height:1.7; color:var(--text-muted); margin-bottom:12px; }
+
         /* ===== ADMIN DASHBOARD ===== */
         #adminPanel { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:var(--gray-bg); z-index:2000; overflow:hidden; }
         #adminPanel.active { display:flex; }
-        .admin-sidebar {
-            width:var(--sidebar-width); height:100%; background:var(--white);
-            box-shadow:2px 0 20px rgba(0,0,0,0.06); padding:24px 20px;
-            overflow-y:auto; flex-shrink:0; display:flex; flex-direction:column;
-            transition:transform 0.3s ease;
-        }
+        .admin-sidebar { width:var(--sidebar-width); height:100%; background:var(--white); box-shadow:2px 0 20px rgba(0,0,0,0.06); padding:24px 20px; overflow-y:auto; flex-shrink:0; display:flex; flex-direction:column; transition:transform 0.3s ease; }
         .admin-sidebar .sidebar-logo { font-size:1.4rem; font-weight:800; color:var(--primary-dark); margin-bottom:24px; padding-bottom:16px; border-bottom:1px solid rgba(10,126,111,0.08); }
         .admin-sidebar .sidebar-logo i { color:var(--primary); margin-right:10px; }
         .admin-sidebar .sidebar-menu { list-style:none; flex:1; }
@@ -183,7 +189,6 @@
         .admin-header-bar h2 small { font-weight:400; font-size:1rem; color:var(--text-muted); display:block; }
         .admin-user { display:flex; align-items:center; gap:14px; }
         .admin-user .avatar { width:44px; height:44px; border-radius:50%; background:var(--primary-light); display:flex; align-items:center; justify-content:center; color:var(--primary); font-weight:700; }
-
         #sidebarToggle { background:none; border:none; font-size:1.5rem; cursor:pointer; margin-right:12px; display:none; }
 
         .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:18px; margin-bottom:28px; }
@@ -211,6 +216,10 @@
         .workflow-steps { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
         .workflow-step { background:var(--gray-bg); padding:6px 14px; border-radius:20px; font-size:0.75rem; font-weight:600; color:var(--text-muted); border:1px solid #e0e8e6; }
 
+        .payment-table { width:100%; border-collapse:collapse; font-size:0.85rem; margin-top:12px; }
+        .payment-table th { background:var(--gray-bg); padding:8px 12px; text-align:left; }
+        .payment-table td { padding:8px 12px; border-bottom:1px solid #eee; }
+
         .timeline-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:4000; backdrop-filter:blur(4px); justify-content:center; align-items:center; padding:20px; }
         .timeline-modal.active { display:flex; }
         .timeline-box { background:white; max-width:700px; width:100%; max-height:90vh; overflow-y:auto; border-radius:var(--radius); padding:30px 28px; box-shadow:0 20px 60px rgba(0,0,0,0.3); position:relative; }
@@ -228,7 +237,6 @@
 
         .modal-close-btn { position:absolute; top:16px; right:24px; font-size:1.6rem; cursor:pointer; color:var(--text-muted); background:none; border:none; z-index:10; }
 
-        /* ===== TOAST ===== */
         #toastContainer { position:fixed; bottom:30px; right:30px; z-index:3000; display:flex; flex-direction:column; gap:12px; max-width:380px; width:100%; }
         .toast { background:var(--text-dark); color:white; padding:14px 20px; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.2); animation:slideUp 0.4s ease; display:flex; align-items:center; gap:12px; font-size:0.9rem; }
         .toast.success { border-left:5px solid #4caf50; }
@@ -270,18 +278,15 @@
             .stats-grid { grid-template-columns:repeat(2,1fr); }
             .form-row { grid-template-columns:1fr; }
             .patient-list { grid-template-columns:1fr; }
+            .policy-box { padding:24px; }
+            .policy-box h2 { font-size:1.5rem; }
         }
         @media (max-width:768px) {
             .hamburger { display:flex; }
             .nav-links { position:fixed; top:74px; left:0; width:100%; background:var(--white); flex-direction:column; padding:24px 20px; gap:14px; box-shadow:0 20px 40px rgba(0,0,0,0.08); transform:translateY(-120%); transition:var(--transition); opacity:0; pointer-events:none; }
             .nav-links.open { transform:translateY(0); opacity:1; pointer-events:auto; }
             #adminPanel.active { flex-direction:column; }
-            .admin-sidebar {
-                position:fixed; left:-280px; top:0; height:100%; width:260px;
-                transition:left 0.3s ease; z-index:5000;
-                box-shadow:2px 0 20px rgba(0,0,0,0.1);
-                border-radius:0;
-            }
+            .admin-sidebar { position:fixed; left:-280px; top:0; height:100%; width:260px; transition:left 0.3s ease; z-index:5000; box-shadow:2px 0 20px rgba(0,0,0,0.1); border-radius:0; }
             .admin-sidebar.open { left:0; }
             #sidebarToggle { display:inline-block !important; }
             .admin-main { padding:12px; }
@@ -303,79 +308,6 @@
             .emergency-section .em-phone { font-size:1.1rem; padding:8px 18px; }
             .legal-grid { grid-template-columns:1fr 1fr; }
         }
-        /* Policy Modals */
-.policy-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    z-index: 9999;
-    backdrop-filter: blur(4px);
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    overflow-y: auto;
-}
-.policy-modal.active {
-    display: flex;
-}
-.policy-box {
-    background: white;
-    max-width: 800px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 40px;
-    border-radius: var(--radius);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    position: relative;
-}
-.policy-box .close-btn {
-    position: sticky;
-    top: 0;
-    float: right;
-    font-size: 1.8rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--text-muted);
-    transition: var(--transition);
-}
-.policy-box .close-btn:hover {
-    color: var(--text-dark);
-}
-.policy-box h2 {
-    font-size: 2rem;
-    color: var(--primary-dark);
-    margin-top: 0;
-}
-.policy-box h3 {
-    font-size: 1.3rem;
-    color: var(--primary);
-    margin: 20px 0 10px;
-}
-.policy-box h4 {
-    font-size: 1.1rem;
-    color: var(--text-dark);
-    margin: 16px 0 6px;
-}
-.policy-box p {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: var(--text-muted);
-    margin-bottom: 12px;
-}
-@media (max-width:768px) {
-    .policy-box {
-        padding: 24px;
-    }
-    .policy-box h2 {
-        font-size: 1.5rem;
-    }
-}
         @media (max-width:480px) {
             .hero-content h1 { font-size:1.7rem; }
             .btn-primary, .btn-outline, .btn-accent { padding:10px 18px; font-size:0.8rem; }
@@ -416,7 +348,7 @@
     <!-- ===== TOAST CONTAINER ===== -->
     <div id="toastContainer"></div>
 
-    <!-- ===== ADMIN PANEL (Intelligent Workflow) ===== -->
+    <!-- ===== ADMIN PANEL ===== -->
     <div id="adminPanel">
         <button class="modal-close-btn" id="adminCloseBtn">&times;</button>
         <div class="admin-sidebar" id="adminSidebar">
@@ -429,6 +361,7 @@
                 <li data-tab="lab"><i class="fas fa-microscope"></i> Laboratory</li>
                 <li data-tab="pharmacy"><i class="fas fa-prescription-bottle-alt"></i> Pharmacy</li>
                 <li data-tab="billing"><i class="fas fa-credit-card"></i> Billing</li>
+                <li data-tab="payments"><i class="fas fa-money-bill-wave"></i> Payments</li>
                 <li data-tab="appointments"><i class="fas fa-calendar-check"></i> Appointments</li>
             </ul>
             <div class="sidebar-footer">&copy; 2026 Oasis Maternity</div>
@@ -469,6 +402,11 @@
                         <div><strong>Today:</strong> KSh <span id="revenueToday">0</span></div>
                         <div><strong>Weekly:</strong> KSh <span id="revenueWeek">0</span></div>
                         <div><strong>Monthly:</strong> KSh <span id="revenueMonth">0</span></div>
+                        <div style="margin-top:8px;font-size:0.85rem;">
+                            <div><strong>Cash:</strong> KSh <span id="revenueCash">0</span></div>
+                            <div><strong>M-PESA:</strong> KSh <span id="revenueMpesa">0</span></div>
+                            <div><strong>Insurance:</strong> KSh <span id="revenueInsurance">0</span></div>
+                        </div>
                     </div>
                     <div style="background:var(--white);padding:20px;border-radius:var(--radius);border:1px solid rgba(10,126,111,0.04);">
                         <h4><i class="fas fa-user-md"></i> Staff Performance</h4>
@@ -557,6 +495,17 @@
                 <div class="patient-list" id="billingPatientList"></div>
             </div>
 
+            <!-- PAYMENTS -->
+            <div id="paymentsPanel" class="dept-panel">
+                <h4 style="margin-bottom:12px;">All Payments</h4>
+                <div style="overflow-x:auto;">
+                    <table class="payment-table">
+                        <thead><tr><th>Patient No.</th><th>Amount</th><th>Method</th><th>Reference</th><th>Status</th><th>Date</th><th>Time</th></tr></thead>
+                        <tbody id="paymentsTableBody"><tr><td colspan="7" style="text-align:center;padding:20px;color:var(--text-muted);">No payments recorded.</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+
             <!-- APPOINTMENTS -->
             <div id="appointmentsPanel" class="dept-panel">
                 <h4 style="margin-bottom:12px;">Appointment Requests</h4>
@@ -568,6 +517,7 @@
     </div>
 
     <!-- ===== MODALS ===== -->
+    <!-- Nursing Modal -->
     <div id="nursingModal" class="timeline-modal">
         <div class="timeline-box">
             <button class="close-btn" id="nursingModalClose">&times;</button>
@@ -585,6 +535,7 @@
         </div>
     </div>
 
+    <!-- Doctor Modal -->
     <div id="doctorModal" class="timeline-modal">
         <div class="timeline-box">
             <button class="close-btn" id="doctorModalClose">&times;</button>
@@ -600,6 +551,7 @@
         </div>
     </div>
 
+    <!-- Lab Modal -->
     <div id="labModal" class="timeline-modal">
         <div class="timeline-box">
             <button class="close-btn" id="labModalClose">&times;</button>
@@ -611,6 +563,7 @@
         </div>
     </div>
 
+    <!-- Pharmacy Modal -->
     <div id="pharmacyModal" class="timeline-modal">
         <div class="timeline-box">
             <button class="close-btn" id="pharmacyModalClose">&times;</button>
@@ -621,6 +574,7 @@
         </div>
     </div>
 
+    <!-- Billing Modal (with payment options) -->
     <div id="billingModal" class="timeline-modal">
         <div class="timeline-box">
             <button class="close-btn" id="billingModalClose">&times;</button>
@@ -629,13 +583,32 @@
             <div style="background:var(--gray-bg);padding:12px;border-radius:8px;margin-bottom:12px;">
                 <strong>Total Charges:</strong> KSh <span id="billingTotal">1500</span>
             </div>
-            <div class="form-group"><label>Payment Method</label>
-                <select id="billingMethod"><option value="Cash">Cash</option><option value="M-PESA">M-PESA</option><option value="Insurance">Insurance</option></select>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select id="billingMethod">
+                        <option value="Cash">Cash</option>
+                        <option value="M-PESA">M-PESA</option>
+                        <option value="NHIF">NHIF/SHA</option>
+                        <option value="AAR">AAR</option>
+                        <option value="Jubilee">Jubilee</option>
+                        <option value="Britam">Britam</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Insurance Member Number (if applicable)</label>
+                    <input type="text" id="billingInsuranceNo" placeholder="e.g. AAR123456" />
+                </div>
+                <div class="form-group">
+                    <label>Authorization Number (if applicable)</label>
+                    <input type="text" id="billingAuthNo" placeholder="e.g. AUTH123" />
+                </div>
             </div>
             <button class="btn-primary" id="billingSaveBtn"><i class="fas fa-check"></i> Complete Payment</button>
         </div>
     </div>
 
+    <!-- Checkout Modal -->
     <div id="checkoutModal" class="timeline-modal">
         <div class="timeline-box">
             <button class="close-btn" id="checkoutModalClose">&times;</button>
@@ -645,6 +618,7 @@
         </div>
     </div>
 
+    <!-- Timeline Modal -->
     <div id="timelineModal" class="timeline-modal">
         <div class="timeline-box">
             <button class="close-btn" id="timelineModalClose">&times;</button>
@@ -653,37 +627,142 @@
         </div>
     </div>
 
-    <!-- ===== PUBLIC SECTIONS ===== -->
-    <!-- HERO -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <div class="emergency-badge"><i class="fas fa-phone-alt"></i> Emergency: +254 712 345 678</div>
-                <div class="slogan">Where Every Mother and Baby Matters</div>
-                <h1>Welcome to <span>Oasis Maternity</span> &amp; Nursing Home</h1>
-                <p>A trusted healthcare facility dedicated to providing quality, compassionate, and affordable medical services to individuals and families within Mosobeti and the surrounding communities.</p>
-                <div class="hero-buttons">
-                    <a href="#appointments" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Appointment</a>
-                    <a href="#register" class="btn-outline">Patient Registration</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat"><h3>500+</h3><p>Happy Mothers</p></div>
-                    <div class="stat"><h3>98%</h3><p>Satisfaction Rate</p></div>
-                    <div class="stat"><h3>24/7</h3><p>Emergency Care</p></div>
-                </div>
-                <div style="margin-top:16px; font-size:0.85rem; color:var(--text-muted);">
-                    <i class="far fa-clock"></i> Mon–Fri: 7:00 AM – 8:00 PM &nbsp;|&nbsp; Sat–Sun: 8:00 AM – 6:00 PM
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="image-placeholder">
-                    <i class="fas fa-hand-holding-heart"></i>
-                    <span>Your Trusted Maternity &amp; Nursing Home</span>
-                    <div class="badge"><i class="fas fa-star"></i> 4.9 ★</div>
-                </div>
-            </div>
+    <!-- ===== POLICY MODALS ===== -->
+    <!-- Privacy Policy -->
+    <div id="privacyModal" class="policy-modal">
+        <div class="policy-box">
+            <button class="close-btn" onclick="closePolicy('privacy')">&times;</button>
+            <h2>🔒 Privacy Policy</h2>
+            <h3>Oasis Maternity and Nursing Home Mosobeti Privacy Policy</h3>
+            <h4>Introduction</h4>
+            <p>Oasis Maternity and Nursing Home Mosobeti is committed to protecting the privacy, dignity, and confidentiality of all patients, visitors, employees, and users of our services. We recognize that healthcare information is highly sensitive and must be handled responsibly, securely, and ethically.</p>
+            <p>This Privacy Policy explains how we collect, use, store, protect, and disclose personal information obtained through our healthcare services, hospital management systems, website, mobile applications, and other communication channels.</p>
+            <p>By accessing our services, visiting our facility, or using our digital platforms, you acknowledge and agree to the practices described in this policy.</p>
+
+            <h4>Information We Collect</h4>
+            <p><strong>Personal Information:</strong> Full Name, National ID or Passport Number, Date of Birth, Gender, Physical Address, Phone Number, Email Address, Emergency Contact Information.</p>
+            <p><strong>Medical Information:</strong> Medical History, Previous Diagnoses, Laboratory Results, Prescriptions, Treatment Records, Immunization Records, Pregnancy and Maternal Health Records, Hospital Admission Records.</p>
+            <p><strong>Financial Information:</strong> Payment Records, Insurance Information, M-PESA Transaction References, Billing History.</p>
+            <p><strong>System Information:</strong> Login Activity, IP Addresses, Device Information, User Access Logs, Security Audit Trails.</p>
+
+            <h4>How We Use Your Information</h4>
+            <p>We use collected information to: Register patients, schedule appointments, provide medical treatment, maintain medical records, process payments, generate prescriptions, conduct laboratory testing, communicate appointment reminders, improve healthcare services, meet legal and regulatory requirements, prevent fraud and unauthorized access.</p>
+
+            <h4>Confidentiality of Medical Records</h4>
+            <p>Patient records are strictly confidential. Medical information will only be accessible to authorized healthcare personnel involved in patient care, including: Doctors, Nurses, Laboratory Technologists, Pharmacists, Hospital Administrators (where necessary).</p>
+            <p>Unauthorized access, sharing, or disclosure of patient information is strictly prohibited and may result in disciplinary action or legal consequences.</p>
+
+            <h4>Data Security Measures</h4>
+            <p>We implement industry-standard security measures including: Encrypted data storage, Secure authentication systems, Role-based access controls, Password protection, Automatic session timeouts, Security monitoring, Audit logging, Regular system backups.</p>
+            <p>All users are required to maintain the confidentiality of their login credentials.</p>
+
+            <h4>Retention of Information</h4>
+            <p>Medical and administrative records are retained according to applicable healthcare regulations and professional standards. Records may be archived for future reference, legal compliance, healthcare continuity, and operational purposes.</p>
+
+            <h4>Patient Rights Regarding Privacy</h4>
+            <p>Patients have the right to: Access their personal information, Request corrections where legally permitted, Receive explanations regarding data usage, Raise privacy concerns, Receive protection against unauthorized disclosures.</p>
+
+            <h4>Policy Updates</h4>
+            <p>This Privacy Policy may be updated periodically to reflect legal, technological, or operational changes.</p>
         </div>
-    </section>
+    </div>
+
+    <!-- Terms and Conditions -->
+    <div id="termsModal" class="policy-modal">
+        <div class="policy-box">
+            <button class="close-btn" onclick="closePolicy('terms')">&times;</button>
+            <h2>📄 Terms and Conditions</h2>
+            <h3>Terms and Conditions of Service</h3>
+            <h4>Acceptance of Terms</h4>
+            <p>By accessing the services of Oasis Maternity and Nursing Home Mosobeti, patients and visitors agree to comply with these terms and conditions.</p>
+
+            <h4>Hospital Services</h4>
+            <p>The hospital provides: Maternity Services, Antenatal Care, Postnatal Care, Child Welfare Services, Outpatient Services, Nursing Care, Laboratory Services, Pharmacy Services, Health Education Services.</p>
+            <p>The availability of services may vary depending on staffing, emergencies, and operational requirements.</p>
+
+            <h4>Patient Responsibilities</h4>
+            <p>Patients are responsible for: Providing accurate information, Following medical advice, Attending scheduled appointments, Respecting hospital staff and property, Making timely payments, Reporting changes in medical condition.</p>
+            <p>Providing false information may compromise treatment and affect service delivery.</p>
+
+            <h4>Appointments</h4>
+            <p>Patients should arrive on time for appointments. The hospital reserves the right to reschedule appointments due to: Medical emergencies, Staff availability, Equipment maintenance, Public health concerns.</p>
+
+            <h4>Payments and Billing</h4>
+            <p>Patients are responsible for settling all charges associated with services received. Accepted payment methods may include: Cash, M-PESA, Insurance, Bank Transfer.</p>
+            <p>Failure to settle bills may result in delays in accessing certain non-emergency services.</p>
+
+            <h4>Limitation of Liability</h4>
+            <p>Healthcare outcomes cannot be guaranteed due to the complexity of medical conditions and individual patient factors. The hospital shall not be liable for outcomes resulting from: Failure to follow medical advice, Incomplete medical information, Delayed presentation for treatment, Circumstances beyond reasonable control.</p>
+
+            <h4>Changes to Terms</h4>
+            <p>Management reserves the right to amend these terms when necessary.</p>
+        </div>
+    </div>
+
+    <!-- Patient Rights -->
+    <div id="rightsModal" class="policy-modal">
+        <div class="policy-box">
+            <button class="close-btn" onclick="closePolicy('rights')">&times;</button>
+            <h2>👥 Patient Rights</h2>
+            <h3>Patient Rights and Responsibilities Charter</h3>
+            <p>Oasis Maternity and Nursing Home Mosobeti recognizes and respects the rights of every patient.</p>
+
+            <h4>Right to Respect and Dignity</h4>
+            <p>Every patient shall be treated with: Courtesy, Compassion, Respect, Professionalism – without discrimination based on: Age, Gender, Religion, Disability, Social Status, Ethnicity.</p>
+
+            <h4>Right to Information</h4>
+            <p>Patients have the right to receive clear explanations regarding: Diagnosis, Treatment options, Procedures, Risks and benefits, Costs and billing. Information shall be provided in a manner understandable to the patient.</p>
+
+            <h4>Right to Privacy</h4>
+            <p>Patients have the right to confidentiality regarding: Medical records, Consultations, Treatment plans, Personal information.</p>
+
+            <h4>Right to Consent</h4>
+            <p>Patients have the right to make informed decisions regarding treatment. No procedure shall be performed without appropriate consent except in emergency situations permitted by law.</p>
+
+            <h4>Right to Safe Care</h4>
+            <p>Patients have the right to receive: Competent healthcare, Safe treatment, Quality services, Clean facilities.</p>
+
+            <h4>Right to Raise Complaints</h4>
+            <p>Patients may report concerns regarding: Service quality, Staff conduct, Billing issues, Facility conditions. All complaints shall be investigated fairly and professionally.</p>
+        </div>
+    </div>
+
+    <!-- Data Protection -->
+    <div id="dataModal" class="policy-modal">
+        <div class="policy-box">
+            <button class="close-btn" onclick="closePolicy('data')">&times;</button>
+            <h2>🛡 Data Protection</h2>
+            <h3>Data Protection Commitment</h3>
+            <p>Oasis Maternity and Nursing Home Mosobeti is committed to protecting personal and medical information from unauthorized access, misuse, disclosure, loss, or destruction.</p>
+
+            <h4>Data Classification</h4>
+            <p><strong>Public Data</strong> – General information available to the public.<br>
+               <strong>Internal Data</strong> – Operational information used by staff.<br>
+               <strong>Confidential Data</strong> – Patient records, billing information, and healthcare documentation.</p>
+
+            <h4>Access Control</h4>
+            <p>Access to information is granted according to staff responsibilities. Examples: Receptionists access registration information, Nurses access nursing records, Doctors access clinical records, Pharmacists access prescriptions, Cashiers access billing records, Administrators manage system operations.</p>
+            <p>No employee shall access information unrelated to their duties.</p>
+
+            <h4>Audit Trails</h4>
+            <p>Every activity performed within the hospital system is recorded. Examples include: Patient registration, Diagnosis updates, Prescription creation, Payment processing, Laboratory result entry. The system records: User Name, Department, Date, Time, Activity Performed. This ensures accountability and transparency.</p>
+
+            <h4>Security Monitoring</h4>
+            <p>The hospital continuously monitors systems for: Unauthorized access attempts, Suspicious activities, Data breaches, Security vulnerabilities. Appropriate action shall be taken when threats are identified.</p>
+
+            <h4>Backup and Recovery</h4>
+            <p>Regular backups are performed to ensure: Data availability, Business continuity, Disaster recovery. Backups are securely stored and periodically tested.</p>
+
+            <h4>Breach Reporting</h4>
+            <p>Any suspected security incident must be reported immediately to hospital management for investigation and corrective action.</p>
+
+            <h4>Commitment Statement</h4>
+            <p><em>Oasis Maternity and Nursing Home Mosobeti remains committed to providing healthcare services in a manner that protects patient rights, safeguards personal information, promotes transparency, and upholds the highest standards of professional ethics and integrity.</em></p>
+        </div>
+    </div>
+
+    <!-- ===== PUBLIC SECTIONS ===== -->
+    <!-- HERO (already included above) -->
 
     <!-- ABOUT -->
     <section class="section section-alt" id="about">
@@ -694,10 +773,7 @@
             </div>
             <div class="about-grid">
                 <div class="about-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-hospital"></i>
-                        <span>Oasis Maternity &amp; Nursing Home</span>
-                    </div>
+                    <div class="image-placeholder"><i class="fas fa-hospital"></i><span>Oasis Maternity &amp; Nursing Home</span></div>
                 </div>
                 <div class="about-content">
                     <h2>Where <span>Every Life</span> Begins with Care</h2>
@@ -799,7 +875,7 @@
         </div>
     </section>
 
-    <!-- REGISTRATION (public) -->
+    <!-- PATIENT REGISTRATION (public) -->
     <section class="section section-white" id="register">
         <div class="container">
             <div class="section-header">
@@ -927,7 +1003,7 @@
         </div>
     </section>
 
-    <!-- INSURANCE -->
+    <!-- INSURANCE & PAYMENT -->
     <section class="section section-alt" id="insurance">
         <div class="container">
             <div class="section-header">
@@ -993,21 +1069,21 @@
         </div>
     </section>
 
-    <!-- LEGAL -->
+    <!-- LEGAL & POLICIES -->
     <section class="section section-alt" id="legal">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Legal &amp; <span>Policies</span></h2>
-            <p class="section-subtitle">Our commitment to transparency and ethics.</p>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Legal &amp; <span>Policies</span></h2>
+                <p class="section-subtitle">Our commitment to transparency and ethics.</p>
+            </div>
+            <div class="legal-grid">
+                <div class="legal-item" onclick="openPolicy('privacy')" style="cursor:pointer;"><i class="fas fa-lock"></i> Privacy Policy</div>
+                <div class="legal-item" onclick="openPolicy('terms')" style="cursor:pointer;"><i class="fas fa-file-contract"></i> Terms &amp; Conditions</div>
+                <div class="legal-item" onclick="openPolicy('rights')" style="cursor:pointer;"><i class="fas fa-users"></i> Patient Rights</div>
+                <div class="legal-item" onclick="openPolicy('data')" style="cursor:pointer;"><i class="fas fa-shield-virus"></i> Data Protection</div>
+            </div>
         </div>
-        <div class="legal-grid">
-            <div class="legal-item" onclick="openPolicy('privacy')" style="cursor:pointer;"><i class="fas fa-lock"></i> Privacy Policy</div>
-            <div class="legal-item" onclick="openPolicy('terms')" style="cursor:pointer;"><i class="fas fa-file-contract"></i> Terms &amp; Conditions</div>
-            <div class="legal-item" onclick="openPolicy('rights')" style="cursor:pointer;"><i class="fas fa-users"></i> Patient Rights</div>
-            <div class="legal-item" onclick="openPolicy('data')" style="cursor:pointer;"><i class="fas fa-shield-virus"></i> Data Protection</div>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- CONTACT -->
     <section class="section section-white" id="contact">
@@ -1052,141 +1128,6 @@
         </div>
     </section>
 
-<!-- ===== POLICY MODALS ===== -->
-
-<!-- PRIVACY POLICY MODAL -->
-<div id="privacyModal" class="policy-modal">
-    <div class="policy-box">
-        <button class="close-btn" onclick="closePolicy('privacy')">&times;</button>
-        <h2>🔒 Privacy Policy</h2>
-        <h3>Oasis Maternity and Nursing Home Mosobeti Privacy Policy</h3>
-        <h4>Introduction</h4>
-        <p>Oasis Maternity and Nursing Home Mosobeti is committed to protecting the privacy, dignity, and confidentiality of all patients, visitors, employees, and users of our services. We recognize that healthcare information is highly sensitive and must be handled responsibly, securely, and ethically.</p>
-        <p>This Privacy Policy explains how we collect, use, store, protect, and disclose personal information obtained through our healthcare services, hospital management systems, website, mobile applications, and other communication channels.</p>
-        <p>By accessing our services, visiting our facility, or using our digital platforms, you acknowledge and agree to the practices described in this policy.</p>
-
-        <h4>Information We Collect</h4>
-        <p><strong>Personal Information</strong><br>Full Name, National ID or Passport Number, Date of Birth, Gender, Physical Address, Phone Number, Email Address, Emergency Contact Information</p>
-        <p><strong>Medical Information</strong><br>Medical History, Previous Diagnoses, Laboratory Results, Prescriptions, Treatment Records, Immunization Records, Pregnancy and Maternal Health Records, Hospital Admission Records</p>
-        <p><strong>Financial Information</strong><br>Payment Records, Insurance Information, M-PESA Transaction References, Billing History</p>
-        <p><strong>System Information</strong><br>Login Activity, IP Addresses, Device Information, User Access Logs, Security Audit Trails</p>
-
-        <h4>How We Use Your Information</h4>
-        <p>We use collected information to: Register patients, schedule appointments, provide medical treatment, maintain medical records, process payments, generate prescriptions, conduct laboratory testing, communicate appointment reminders, improve healthcare services, meet legal and regulatory requirements, prevent fraud and unauthorized access.</p>
-
-        <h4>Confidentiality of Medical Records</h4>
-        <p>Patient records are strictly confidential. Medical information will only be accessible to authorized healthcare personnel involved in patient care, including: Doctors, Nurses, Laboratory Technologists, Pharmacists, Hospital Administrators (where necessary).</p>
-        <p>Unauthorized access, sharing, or disclosure of patient information is strictly prohibited and may result in disciplinary action or legal consequences.</p>
-
-        <h4>Data Security Measures</h4>
-        <p>We implement industry-standard security measures including: Encrypted data storage, Secure authentication systems, Role-based access controls, Password protection, Automatic session timeouts, Security monitoring, Audit logging, Regular system backups.</p>
-        <p>All users are required to maintain the confidentiality of their login credentials.</p>
-
-        <h4>Retention of Information</h4>
-        <p>Medical and administrative records are retained according to applicable healthcare regulations and professional standards. Records may be archived for future reference, legal compliance, healthcare continuity, and operational purposes.</p>
-
-        <h4>Patient Rights Regarding Privacy</h4>
-        <p>Patients have the right to: Access their personal information, Request corrections where legally permitted, Receive explanations regarding data usage, Raise privacy concerns, Receive protection against unauthorized disclosures.</p>
-
-        <h4>Policy Updates</h4>
-        <p>This Privacy Policy may be updated periodically to reflect legal, technological, or operational changes.</p>
-    </div>
-</div>
-
-<!-- TERMS AND CONDITIONS MODAL -->
-<div id="termsModal" class="policy-modal">
-    <div class="policy-box">
-        <button class="close-btn" onclick="closePolicy('terms')">&times;</button>
-        <h2>📄 Terms and Conditions</h2>
-        <h3>Terms and Conditions of Service</h3>
-        <h4>Acceptance of Terms</h4>
-        <p>By accessing the services of Oasis Maternity and Nursing Home Mosobeti, patients and visitors agree to comply with these terms and conditions.</p>
-
-        <h4>Hospital Services</h4>
-        <p>The hospital provides: Maternity Services, Antenatal Care, Postnatal Care, Child Welfare Services, Outpatient Services, Nursing Care, Laboratory Services, Pharmacy Services, Health Education Services.</p>
-        <p>The availability of services may vary depending on staffing, emergencies, and operational requirements.</p>
-
-        <h4>Patient Responsibilities</h4>
-        <p>Patients are responsible for: Providing accurate information, Following medical advice, Attending scheduled appointments, Respecting hospital staff and property, Making timely payments, Reporting changes in medical condition.</p>
-        <p>Providing false information may compromise treatment and affect service delivery.</p>
-
-        <h4>Appointments</h4>
-        <p>Patients should arrive on time for appointments. The hospital reserves the right to reschedule appointments due to: Medical emergencies, Staff availability, Equipment maintenance, Public health concerns.</p>
-
-        <h4>Payments and Billing</h4>
-        <p>Patients are responsible for settling all charges associated with services received. Accepted payment methods may include: Cash, M-PESA, Insurance, Bank Transfer.</p>
-        <p>Failure to settle bills may result in delays in accessing certain non-emergency services.</p>
-
-        <h4>Limitation of Liability</h4>
-        <p>Healthcare outcomes cannot be guaranteed due to the complexity of medical conditions and individual patient factors. The hospital shall not be liable for outcomes resulting from: Failure to follow medical advice, Incomplete medical information, Delayed presentation for treatment, Circumstances beyond reasonable control.</p>
-
-        <h4>Changes to Terms</h4>
-        <p>Management reserves the right to amend these terms when necessary.</p>
-    </div>
-</div>
-
-<!-- PATIENT RIGHTS MODAL -->
-<div id="rightsModal" class="policy-modal">
-    <div class="policy-box">
-        <button class="close-btn" onclick="closePolicy('rights')">&times;</button>
-        <h2>👥 Patient Rights</h2>
-        <h3>Patient Rights and Responsibilities Charter</h3>
-        <p>Oasis Maternity and Nursing Home Mosobeti recognizes and respects the rights of every patient.</p>
-
-        <h4>Right to Respect and Dignity</h4>
-        <p>Every patient shall be treated with: Courtesy, Compassion, Respect, Professionalism – without discrimination based on: Age, Gender, Religion, Disability, Social Status, Ethnicity.</p>
-
-        <h4>Right to Information</h4>
-        <p>Patients have the right to receive clear explanations regarding: Diagnosis, Treatment options, Procedures, Risks and benefits, Costs and billing. Information shall be provided in a manner understandable to the patient.</p>
-
-        <h4>Right to Privacy</h4>
-        <p>Patients have the right to confidentiality regarding: Medical records, Consultations, Treatment plans, Personal information.</p>
-
-        <h4>Right to Consent</h4>
-        <p>Patients have the right to make informed decisions regarding treatment. No procedure shall be performed without appropriate consent except in emergency situations permitted by law.</p>
-
-        <h4>Right to Safe Care</h4>
-        <p>Patients have the right to receive: Competent healthcare, Safe treatment, Quality services, Clean facilities.</p>
-
-        <h4>Right to Raise Complaints</h4>
-        <p>Patients may report concerns regarding: Service quality, Staff conduct, Billing issues, Facility conditions. All complaints shall be investigated fairly and professionally.</p>
-    </div>
-</div>
-
-<!-- DATA PROTECTION MODAL -->
-<div id="dataModal" class="policy-modal">
-    <div class="policy-box">
-        <button class="close-btn" onclick="closePolicy('data')">&times;</button>
-        <h2>🛡 Data Protection</h2>
-        <h3>Data Protection Commitment</h3>
-        <p>Oasis Maternity and Nursing Home Mosobeti is committed to protecting personal and medical information from unauthorized access, misuse, disclosure, loss, or destruction.</p>
-
-        <h4>Data Classification</h4>
-        <p><strong>Public Data</strong> – General information available to the public.<br>
-           <strong>Internal Data</strong> – Operational information used by staff.<br>
-           <strong>Confidential Data</strong> – Patient records, billing information, and healthcare documentation.</p>
-
-        <h4>Access Control</h4>
-        <p>Access to information is granted according to staff responsibilities. Examples: Receptionists access registration information, Nurses access nursing records, Doctors access clinical records, Pharmacists access prescriptions, Cashiers access billing records, Administrators manage system operations.</p>
-        <p>No employee shall access information unrelated to their duties.</p>
-
-        <h4>Audit Trails</h4>
-        <p>Every activity performed within the hospital system is recorded. Examples include: Patient registration, Diagnosis updates, Prescription creation, Payment processing, Laboratory result entry. The system records: User Name, Department, Date, Time, Activity Performed. This ensures accountability and transparency.</p>
-
-        <h4>Security Monitoring</h4>
-        <p>The hospital continuously monitors systems for: Unauthorized access attempts, Suspicious activities, Data breaches, Security vulnerabilities. Appropriate action shall be taken when threats are identified.</p>
-
-        <h4>Backup and Recovery</h4>
-        <p>Regular backups are performed to ensure: Data availability, Business continuity, Disaster recovery. Backups are securely stored and periodically tested.</p>
-
-        <h4>Breach Reporting</h4>
-        <p>Any suspected security incident must be reported immediately to hospital management for investigation and corrective action.</p>
-
-        <h4>Commitment Statement</h4>
-        <p><em>Oasis Maternity and Nursing Home Mosobeti remains committed to providing healthcare services in a manner that protects patient rights, safeguards personal information, promotes transparency, and upholds the highest standards of professional ethics and integrity.</em></p>
-    </div>
-</div>
-
     <!-- ===== FOOTER ===== -->
     <footer>
         <div class="container">
@@ -1221,6 +1162,8 @@
         function setAppointments(a) { localStorage.setItem('oasisAppointments', JSON.stringify(a)); }
         function getMessages() { return JSON.parse(localStorage.getItem('oasisMessages')) || []; }
         function setMessages(m) { localStorage.setItem('oasisMessages', JSON.stringify(m)); }
+        function getPayments() { return JSON.parse(localStorage.getItem('oasisPayments')) || []; }
+        function setPayments(p) { localStorage.setItem('oasisPayments', JSON.stringify(p)); }
 
         function showToast(msg, type='success', dur=4000) {
             const c = document.getElementById('toastContainer');
@@ -1285,12 +1228,13 @@
             lab: document.getElementById('labPanel'),
             pharmacy: document.getElementById('pharmacyPanel'),
             billing: document.getElementById('billingPanel'),
+            payments: document.getElementById('paymentsPanel'),
             appointments: document.getElementById('appointmentsPanel')
         };
         const titles = {
             dashboard:'CEO Dashboard', reception:'Reception Desk', nursing:'Nursing Department',
             doctor:'Doctor Consultation', lab:'Laboratory Department', pharmacy:'Pharmacy Department',
-            billing:'Billing & Payment', appointments:'Appointments'
+            billing:'Billing & Payment', payments:'Payments', appointments:'Appointments'
         };
 
         function switchTab(tab) {
@@ -1319,6 +1263,7 @@
                 case 'lab': renderLabList(); break;
                 case 'pharmacy': renderPharmacyList(); break;
                 case 'billing': renderBillingList(); break;
+                case 'payments': renderPaymentsTable(); break;
                 case 'appointments': renderAppointments(); break;
             }
         }
@@ -1328,6 +1273,16 @@
             const year = new Date().getFullYear();
             const suffix = Math.floor(100000 + Math.random() * 900000);
             return `OMNH-${year}-${suffix}`;
+        }
+
+        // ======== GENERATE TRANSACTION REFERENCE ========
+        function generateTransactionRef() {
+            const date = new Date();
+            const yy = date.getFullYear().toString().slice(-2);
+            const mm = String(date.getMonth()+1).padStart(2,'0');
+            const dd = String(date.getDate()).padStart(2,'0');
+            const rand = Math.floor(1000 + Math.random() * 9000);
+            return `TXN-${yy}${mm}${dd}-${rand}`;
         }
 
         // ======== ADD STEP ========
@@ -1354,6 +1309,7 @@
         // ======== CEO DASHBOARD ========
         function renderCEOStats() {
             const patients = getPatients();
+            const payments = getPayments();
             const total = patients.length;
             const active = patients.filter(p => p.status !== 'VISIT_COMPLETED').length;
             const waiting = patients.filter(p => p.status === 'WAITING_FOR_CLINICIAN' || p.status === 'REGISTERED').length;
@@ -1368,10 +1324,30 @@
             document.getElementById('patientsInPharmacy').textContent = inPharmacy;
             document.getElementById('completedVisits').textContent = completed;
 
-            const revenue = total * 500;
-            document.getElementById('revenueToday').textContent = revenue.toLocaleString();
-            document.getElementById('revenueWeek').textContent = (revenue * 7).toLocaleString();
-            document.getElementById('revenueMonth').textContent = (revenue * 30).toLocaleString();
+            // Revenue from payments
+            const today = new Date().toLocaleDateString('en-CA');
+            const todayPayments = payments.filter(p => p.date === today);
+            const totalToday = todayPayments.reduce((sum, p) => sum + parseFloat(p.amount), 0);
+            const weekAgo = new Date();
+            weekAgo.setDate(weekAgo.getDate() - 7);
+            const weekPayments = payments.filter(p => new Date(p.date) >= weekAgo);
+            const totalWeek = weekPayments.reduce((sum, p) => sum + parseFloat(p.amount), 0);
+            const monthAgo = new Date();
+            monthAgo.setDate(monthAgo.getDate() - 30);
+            const monthPayments = payments.filter(p => new Date(p.date) >= monthAgo);
+            const totalMonth = monthPayments.reduce((sum, p) => sum + parseFloat(p.amount), 0);
+
+            document.getElementById('revenueToday').textContent = totalToday.toFixed(2);
+            document.getElementById('revenueWeek').textContent = totalWeek.toFixed(2);
+            document.getElementById('revenueMonth').textContent = totalMonth.toFixed(2);
+
+            // Breakdown by method
+            const cash = payments.filter(p => p.method === 'Cash').reduce((s,p) => s + parseFloat(p.amount), 0);
+            const mpesa = payments.filter(p => p.method === 'M-PESA').reduce((s,p) => s + parseFloat(p.amount), 0);
+            const insurance = payments.filter(p => ['NHIF','AAR','Jubilee','Britam'].includes(p.method)).reduce((s,p) => s + parseFloat(p.amount), 0);
+            document.getElementById('revenueCash').textContent = cash.toFixed(2);
+            document.getElementById('revenueMpesa').textContent = mpesa.toFixed(2);
+            document.getElementById('revenueInsurance').textContent = insurance.toFixed(2);
 
             document.getElementById('staffPerformance').innerHTML =
                 `Reception: ${patients.filter(p=>p.registeredBy==='Receptionist').length} patients<br>Nurse: ${patients.filter(p=>p.vitals).length} patients<br>Doctor: ${patients.filter(p=>p.consultation).length} patients<br>Lab: ${patients.filter(p=>p.labResults).length} tests`;
@@ -1532,39 +1508,6 @@
             }
         });
 
-       // ======== POLICY MODALS ========
-function openPolicy(type) {
-    const modalMap = {
-        'privacy': 'privacyModal',
-        'terms': 'termsModal',
-        'rights': 'rightsModal',
-        'data': 'dataModal'
-    };
-    const modal = document.getElementById(modalMap[type]);
-    if (modal) modal.classList.add('active');
-}
-
-function closePolicy(type) {
-    const modalMap = {
-        'privacy': 'privacyModal',
-        'terms': 'termsModal',
-        'rights': 'rightsModal',
-        'data': 'dataModal'
-    };
-    const modal = document.getElementById(modalMap[type]);
-    if (modal) modal.classList.remove('active');
-}
-
-// Close modal when clicking outside the content
-document.querySelectorAll('.policy-modal').forEach(modal => {
-    modal.addEventListener('click', function(e) {
-        if (e.target === this) {
-            this.classList.remove('active');
-        }
-    });
-});
-
-        
         // ======== DOCTOR ========
         function renderDoctorList() {
             const patients = getPatients().filter(p => p.status === 'WAITING_FOR_CLINICIAN' || p.status === 'LAB_COMPLETED');
@@ -1609,7 +1552,6 @@ document.querySelectorAll('.policy-modal').forEach(modal => {
                     prescriptions: document.getElementById('doctorPrescriptions').value.trim()
                 };
                 addStep(p, 'Doctor Consultation', `Diagnosis: ${p.consultation.diagnosis}`);
-
                 if (p.consultation.prescriptions) {
                     addStep(p, 'Prescription Issued', p.consultation.prescriptions);
                     p.status = 'PHARMACY_REQUIRED';
@@ -1749,6 +1691,9 @@ document.querySelectorAll('.policy-modal').forEach(modal => {
             currentBillingPatient = p;
             document.getElementById('billingPatientInfo').innerHTML = `<strong>${p.name}</strong> (${p.patientNo})`;
             document.getElementById('billingTotal').textContent = '1500';
+            document.getElementById('billingMethod').value = 'Cash';
+            document.getElementById('billingInsuranceNo').value = '';
+            document.getElementById('billingAuthNo').value = '';
             document.getElementById('billingModal').classList.add('active');
         }
         document.getElementById('billingModalClose').addEventListener('click', ()=>document.getElementById('billingModal').classList.remove('active'));
@@ -1756,19 +1701,71 @@ document.querySelectorAll('.policy-modal').forEach(modal => {
 
         document.getElementById('billingSaveBtn').addEventListener('click', function() {
             if (!currentBillingPatient) return;
+            const method = document.getElementById('billingMethod').value;
+            const insuranceNo = document.getElementById('billingInsuranceNo').value.trim();
+            const authNo = document.getElementById('billingAuthNo').value.trim();
+            const amount = 1500;
+            const ref = generateTransactionRef();
+            const now = new Date();
+            const date = now.toLocaleDateString('en-CA');
+            const time = now.toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit' });
+
+            // Save payment
+            const payments = getPayments();
+            payments.push({
+                patient_number: currentBillingPatient.patientNo,
+                patient_name: currentBillingPatient.name,
+                amount: amount,
+                method: method,
+                reference: ref,
+                status: 'Paid',
+                date: date,
+                time: time,
+                received_by: 'Admin',
+                insurance_no: insuranceNo,
+                auth_no: authNo
+            });
+            setPayments(payments);
+
+            // Update patient status
             const patients = getPatients();
-            const p = patients.find(p => p.patientNo === currentBillingPatient.patientNo);
+            const p = patients.find(pat => pat.patientNo === currentBillingPatient.patientNo);
             if (p) {
-                p.billing = { total: 1500, method: document.getElementById('billingMethod').value, paid: true };
-                addStep(p, 'Payment Completed', `${p.billing.method} - KSh 1500`);
+                p.billing = { amount, method, ref, paid: true };
+                addStep(p, 'Payment Completed', `${method} - KSh ${amount}`);
                 p.status = 'PAID';
                 setPatients(patients);
-                showToast('✅ Payment completed.', 'success');
-                document.getElementById('billingModal').classList.remove('active');
-                renderBillingList();
-                renderCEOStats();
             }
+            showToast(`✅ Payment of KSh ${amount} recorded. Reference: ${ref}`, 'success');
+            document.getElementById('billingModal').classList.remove('active');
+            renderBillingList();
+            renderCEOStats();
+            renderPaymentsTable();
         });
+
+        // ======== PAYMENTS TABLE ========
+        function renderPaymentsTable() {
+            const payments = getPayments();
+            const tbody = document.getElementById('paymentsTableBody');
+            tbody.innerHTML = '';
+            if (!payments.length) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--text-muted);">No payments recorded.</td></tr>';
+                return;
+            }
+            payments.slice().reverse().forEach(p => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${p.patient_number}</td>
+                    <td>KSh ${parseFloat(p.amount).toFixed(2)}</td>
+                    <td>${p.method}</td>
+                    <td>${p.reference}</td>
+                    <td><span style="background:#c8e6c9;padding:2px 12px;border-radius:20px;font-size:0.7rem;color:#2e7d32;">${p.status}</span></td>
+                    <td>${p.date}</td>
+                    <td>${p.time}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
 
         // ======== CHECKOUT ========
         let checkoutPatientData = null;
@@ -1878,10 +1875,64 @@ document.querySelectorAll('.policy-modal').forEach(modal => {
             this.reset();
         });
 
-        // ======== M-PESA ========
+        // ======== M-PESA (public) ========
         document.getElementById('mpesaPayBtn').addEventListener('click', function() {
-            showToast('💳 M-PESA payment simulation: Charging KES 500... Success!', 'success');
+            // Simulate payment via M-PESA
+            const patientNo = prompt('Enter your patient number (if registered):') || 'PUBLIC';
+            const amount = prompt('Enter amount to pay (KES):') || '500';
+            const method = 'M-PESA';
+            const ref = generateTransactionRef();
+            const now = new Date();
+            const date = now.toLocaleDateString('en-CA');
+            const time = now.toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit' });
+            const payments = getPayments();
+            payments.push({
+                patient_number: patientNo,
+                patient_name: 'Public',
+                amount: parseFloat(amount),
+                method: method,
+                reference: ref,
+                status: 'Paid',
+                date: date,
+                time: time,
+                received_by: 'Public',
+                insurance_no: '',
+                auth_no: ''
+            });
+            setPayments(payments);
+            showToast(`💳 M-PESA payment of KSh ${amount} recorded. Ref: ${ref}`, 'success');
+            renderCEOStats();
+            renderPaymentsTable();
         });
+
+        // ======== POLICY MODALS ========
+        function openPolicy(type) {
+            const modalMap = {
+                'privacy': 'privacyModal',
+                'terms': 'termsModal',
+                'rights': 'rightsModal',
+                'data': 'dataModal'
+            };
+            const modal = document.getElementById(modalMap[type]);
+            if (modal) modal.classList.add('active');
+        }
+        function closePolicy(type) {
+            const modalMap = {
+                'privacy': 'privacyModal',
+                'terms': 'termsModal',
+                'rights': 'rightsModal',
+                'data': 'dataModal'
+            };
+            const modal = document.getElementById(modalMap[type]);
+            if (modal) modal.classList.remove('active');
+        }
+        document.querySelectorAll('.policy-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) this.classList.remove('active');
+            });
+        });
+        window.openPolicy = openPolicy;
+        window.closePolicy = closePolicy;
 
         // ======== SMOOTH SCROLL ========
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1901,6 +1952,7 @@ document.querySelectorAll('.policy-modal').forEach(modal => {
         // ======== RENDER DASHBOARD ========
         function renderDashboard() {
             renderCEOStats();
+            renderPaymentsTable();
         }
 
         console.log('🏥 Oasis Maternity System loaded. Admin password: admin123');
