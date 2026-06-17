@@ -303,6 +303,79 @@
             .emergency-section .em-phone { font-size:1.1rem; padding:8px 18px; }
             .legal-grid { grid-template-columns:1fr 1fr; }
         }
+        /* Policy Modals */
+.policy-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+.policy-modal.active {
+    display: flex;
+}
+.policy-box {
+    background: white;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    position: relative;
+}
+.policy-box .close-btn {
+    position: sticky;
+    top: 0;
+    float: right;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+.policy-box .close-btn:hover {
+    color: var(--text-dark);
+}
+.policy-box h2 {
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin-top: 0;
+}
+.policy-box h3 {
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin: 20px 0 10px;
+}
+.policy-box h4 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin: 16px 0 6px;
+}
+.policy-box p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+@media (max-width:768px) {
+    .policy-box {
+        padding: 24px;
+    }
+    .policy-box h2 {
+        font-size: 1.5rem;
+    }
+}
         @media (max-width:480px) {
             .hero-content h1 { font-size:1.7rem; }
             .btn-primary, .btn-outline, .btn-accent { padding:10px 18px; font-size:0.8rem; }
@@ -922,19 +995,19 @@
 
     <!-- LEGAL -->
     <section class="section section-alt" id="legal">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Legal &amp; <span>Policies</span></h2>
-                <p class="section-subtitle">Our commitment to transparency and ethics.</p>
-            </div>
-            <div class="legal-grid">
-                <div class="legal-item"><i class="fas fa-lock"></i> Privacy Policy</div>
-                <div class="legal-item"><i class="fas fa-file-contract"></i> Terms &amp; Conditions</div>
-                <div class="legal-item"><i class="fas fa-users"></i> Patient Rights</div>
-                <div class="legal-item"><i class="fas fa-shield-virus"></i> Data Protection</div>
-            </div>
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Legal &amp; <span>Policies</span></h2>
+            <p class="section-subtitle">Our commitment to transparency and ethics.</p>
         </div>
-    </section>
+        <div class="legal-grid">
+            <div class="legal-item" onclick="openPolicy('privacy')" style="cursor:pointer;"><i class="fas fa-lock"></i> Privacy Policy</div>
+            <div class="legal-item" onclick="openPolicy('terms')" style="cursor:pointer;"><i class="fas fa-file-contract"></i> Terms &amp; Conditions</div>
+            <div class="legal-item" onclick="openPolicy('rights')" style="cursor:pointer;"><i class="fas fa-users"></i> Patient Rights</div>
+            <div class="legal-item" onclick="openPolicy('data')" style="cursor:pointer;"><i class="fas fa-shield-virus"></i> Data Protection</div>
+        </div>
+    </div>
+</section>
 
     <!-- CONTACT -->
     <section class="section section-white" id="contact">
@@ -978,6 +1051,141 @@
             </div>
         </div>
     </section>
+
+<!-- ===== POLICY MODALS ===== -->
+
+<!-- PRIVACY POLICY MODAL -->
+<div id="privacyModal" class="policy-modal">
+    <div class="policy-box">
+        <button class="close-btn" onclick="closePolicy('privacy')">&times;</button>
+        <h2>🔒 Privacy Policy</h2>
+        <h3>Oasis Maternity and Nursing Home Mosobeti Privacy Policy</h3>
+        <h4>Introduction</h4>
+        <p>Oasis Maternity and Nursing Home Mosobeti is committed to protecting the privacy, dignity, and confidentiality of all patients, visitors, employees, and users of our services. We recognize that healthcare information is highly sensitive and must be handled responsibly, securely, and ethically.</p>
+        <p>This Privacy Policy explains how we collect, use, store, protect, and disclose personal information obtained through our healthcare services, hospital management systems, website, mobile applications, and other communication channels.</p>
+        <p>By accessing our services, visiting our facility, or using our digital platforms, you acknowledge and agree to the practices described in this policy.</p>
+
+        <h4>Information We Collect</h4>
+        <p><strong>Personal Information</strong><br>Full Name, National ID or Passport Number, Date of Birth, Gender, Physical Address, Phone Number, Email Address, Emergency Contact Information</p>
+        <p><strong>Medical Information</strong><br>Medical History, Previous Diagnoses, Laboratory Results, Prescriptions, Treatment Records, Immunization Records, Pregnancy and Maternal Health Records, Hospital Admission Records</p>
+        <p><strong>Financial Information</strong><br>Payment Records, Insurance Information, M-PESA Transaction References, Billing History</p>
+        <p><strong>System Information</strong><br>Login Activity, IP Addresses, Device Information, User Access Logs, Security Audit Trails</p>
+
+        <h4>How We Use Your Information</h4>
+        <p>We use collected information to: Register patients, schedule appointments, provide medical treatment, maintain medical records, process payments, generate prescriptions, conduct laboratory testing, communicate appointment reminders, improve healthcare services, meet legal and regulatory requirements, prevent fraud and unauthorized access.</p>
+
+        <h4>Confidentiality of Medical Records</h4>
+        <p>Patient records are strictly confidential. Medical information will only be accessible to authorized healthcare personnel involved in patient care, including: Doctors, Nurses, Laboratory Technologists, Pharmacists, Hospital Administrators (where necessary).</p>
+        <p>Unauthorized access, sharing, or disclosure of patient information is strictly prohibited and may result in disciplinary action or legal consequences.</p>
+
+        <h4>Data Security Measures</h4>
+        <p>We implement industry-standard security measures including: Encrypted data storage, Secure authentication systems, Role-based access controls, Password protection, Automatic session timeouts, Security monitoring, Audit logging, Regular system backups.</p>
+        <p>All users are required to maintain the confidentiality of their login credentials.</p>
+
+        <h4>Retention of Information</h4>
+        <p>Medical and administrative records are retained according to applicable healthcare regulations and professional standards. Records may be archived for future reference, legal compliance, healthcare continuity, and operational purposes.</p>
+
+        <h4>Patient Rights Regarding Privacy</h4>
+        <p>Patients have the right to: Access their personal information, Request corrections where legally permitted, Receive explanations regarding data usage, Raise privacy concerns, Receive protection against unauthorized disclosures.</p>
+
+        <h4>Policy Updates</h4>
+        <p>This Privacy Policy may be updated periodically to reflect legal, technological, or operational changes.</p>
+    </div>
+</div>
+
+<!-- TERMS AND CONDITIONS MODAL -->
+<div id="termsModal" class="policy-modal">
+    <div class="policy-box">
+        <button class="close-btn" onclick="closePolicy('terms')">&times;</button>
+        <h2>📄 Terms and Conditions</h2>
+        <h3>Terms and Conditions of Service</h3>
+        <h4>Acceptance of Terms</h4>
+        <p>By accessing the services of Oasis Maternity and Nursing Home Mosobeti, patients and visitors agree to comply with these terms and conditions.</p>
+
+        <h4>Hospital Services</h4>
+        <p>The hospital provides: Maternity Services, Antenatal Care, Postnatal Care, Child Welfare Services, Outpatient Services, Nursing Care, Laboratory Services, Pharmacy Services, Health Education Services.</p>
+        <p>The availability of services may vary depending on staffing, emergencies, and operational requirements.</p>
+
+        <h4>Patient Responsibilities</h4>
+        <p>Patients are responsible for: Providing accurate information, Following medical advice, Attending scheduled appointments, Respecting hospital staff and property, Making timely payments, Reporting changes in medical condition.</p>
+        <p>Providing false information may compromise treatment and affect service delivery.</p>
+
+        <h4>Appointments</h4>
+        <p>Patients should arrive on time for appointments. The hospital reserves the right to reschedule appointments due to: Medical emergencies, Staff availability, Equipment maintenance, Public health concerns.</p>
+
+        <h4>Payments and Billing</h4>
+        <p>Patients are responsible for settling all charges associated with services received. Accepted payment methods may include: Cash, M-PESA, Insurance, Bank Transfer.</p>
+        <p>Failure to settle bills may result in delays in accessing certain non-emergency services.</p>
+
+        <h4>Limitation of Liability</h4>
+        <p>Healthcare outcomes cannot be guaranteed due to the complexity of medical conditions and individual patient factors. The hospital shall not be liable for outcomes resulting from: Failure to follow medical advice, Incomplete medical information, Delayed presentation for treatment, Circumstances beyond reasonable control.</p>
+
+        <h4>Changes to Terms</h4>
+        <p>Management reserves the right to amend these terms when necessary.</p>
+    </div>
+</div>
+
+<!-- PATIENT RIGHTS MODAL -->
+<div id="rightsModal" class="policy-modal">
+    <div class="policy-box">
+        <button class="close-btn" onclick="closePolicy('rights')">&times;</button>
+        <h2>👥 Patient Rights</h2>
+        <h3>Patient Rights and Responsibilities Charter</h3>
+        <p>Oasis Maternity and Nursing Home Mosobeti recognizes and respects the rights of every patient.</p>
+
+        <h4>Right to Respect and Dignity</h4>
+        <p>Every patient shall be treated with: Courtesy, Compassion, Respect, Professionalism – without discrimination based on: Age, Gender, Religion, Disability, Social Status, Ethnicity.</p>
+
+        <h4>Right to Information</h4>
+        <p>Patients have the right to receive clear explanations regarding: Diagnosis, Treatment options, Procedures, Risks and benefits, Costs and billing. Information shall be provided in a manner understandable to the patient.</p>
+
+        <h4>Right to Privacy</h4>
+        <p>Patients have the right to confidentiality regarding: Medical records, Consultations, Treatment plans, Personal information.</p>
+
+        <h4>Right to Consent</h4>
+        <p>Patients have the right to make informed decisions regarding treatment. No procedure shall be performed without appropriate consent except in emergency situations permitted by law.</p>
+
+        <h4>Right to Safe Care</h4>
+        <p>Patients have the right to receive: Competent healthcare, Safe treatment, Quality services, Clean facilities.</p>
+
+        <h4>Right to Raise Complaints</h4>
+        <p>Patients may report concerns regarding: Service quality, Staff conduct, Billing issues, Facility conditions. All complaints shall be investigated fairly and professionally.</p>
+    </div>
+</div>
+
+<!-- DATA PROTECTION MODAL -->
+<div id="dataModal" class="policy-modal">
+    <div class="policy-box">
+        <button class="close-btn" onclick="closePolicy('data')">&times;</button>
+        <h2>🛡 Data Protection</h2>
+        <h3>Data Protection Commitment</h3>
+        <p>Oasis Maternity and Nursing Home Mosobeti is committed to protecting personal and medical information from unauthorized access, misuse, disclosure, loss, or destruction.</p>
+
+        <h4>Data Classification</h4>
+        <p><strong>Public Data</strong> – General information available to the public.<br>
+           <strong>Internal Data</strong> – Operational information used by staff.<br>
+           <strong>Confidential Data</strong> – Patient records, billing information, and healthcare documentation.</p>
+
+        <h4>Access Control</h4>
+        <p>Access to information is granted according to staff responsibilities. Examples: Receptionists access registration information, Nurses access nursing records, Doctors access clinical records, Pharmacists access prescriptions, Cashiers access billing records, Administrators manage system operations.</p>
+        <p>No employee shall access information unrelated to their duties.</p>
+
+        <h4>Audit Trails</h4>
+        <p>Every activity performed within the hospital system is recorded. Examples include: Patient registration, Diagnosis updates, Prescription creation, Payment processing, Laboratory result entry. The system records: User Name, Department, Date, Time, Activity Performed. This ensures accountability and transparency.</p>
+
+        <h4>Security Monitoring</h4>
+        <p>The hospital continuously monitors systems for: Unauthorized access attempts, Suspicious activities, Data breaches, Security vulnerabilities. Appropriate action shall be taken when threats are identified.</p>
+
+        <h4>Backup and Recovery</h4>
+        <p>Regular backups are performed to ensure: Data availability, Business continuity, Disaster recovery. Backups are securely stored and periodically tested.</p>
+
+        <h4>Breach Reporting</h4>
+        <p>Any suspected security incident must be reported immediately to hospital management for investigation and corrective action.</p>
+
+        <h4>Commitment Statement</h4>
+        <p><em>Oasis Maternity and Nursing Home Mosobeti remains committed to providing healthcare services in a manner that protects patient rights, safeguards personal information, promotes transparency, and upholds the highest standards of professional ethics and integrity.</em></p>
+    </div>
+</div>
 
     <!-- ===== FOOTER ===== -->
     <footer>
@@ -1324,6 +1532,39 @@
             }
         });
 
+       // ======== POLICY MODALS ========
+function openPolicy(type) {
+    const modalMap = {
+        'privacy': 'privacyModal',
+        'terms': 'termsModal',
+        'rights': 'rightsModal',
+        'data': 'dataModal'
+    };
+    const modal = document.getElementById(modalMap[type]);
+    if (modal) modal.classList.add('active');
+}
+
+function closePolicy(type) {
+    const modalMap = {
+        'privacy': 'privacyModal',
+        'terms': 'termsModal',
+        'rights': 'rightsModal',
+        'data': 'dataModal'
+    };
+    const modal = document.getElementById(modalMap[type]);
+    if (modal) modal.classList.remove('active');
+}
+
+// Close modal when clicking outside the content
+document.querySelectorAll('.policy-modal').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.classList.remove('active');
+        }
+    });
+});
+
+        
         // ======== DOCTOR ========
         function renderDoctorList() {
             const patients = getPatients().filter(p => p.status === 'WAITING_FOR_CLINICIAN' || p.status === 'LAB_COMPLETED');
